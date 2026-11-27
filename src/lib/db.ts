@@ -9,7 +9,8 @@ import path from 'path';
 import fs from 'fs';
 import crypto from 'crypto';
 
-const DB_DIR = path.join(process.cwd(), '.data');
+const isServerless = !!(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+const DB_DIR = isServerless ? path.join('/tmp', '.data') : path.join(process.cwd(), '.data');
 if (!fs.existsSync(DB_DIR)) {
   fs.mkdirSync(DB_DIR, { recursive: true });
 }
