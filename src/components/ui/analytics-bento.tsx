@@ -429,7 +429,7 @@ function Treemap({ data, period, mono, tip }: { data: AnalyticsBentoProps["categ
   const total = items.reduce((a, b) => a + b.v, 0) || 1;
   const rects = W ? squarify(items, 0, 0, W + G, H + G) : [];
   return (
-    <div ref={ref} className="relative mt-1.5 h-[300px] sm:h-[340px]" role="img" aria-label={`${data.title}, ${data.periods[period]?.label}`)}
+    <div ref={ref} className="relative mt-1.5 h-[300px] sm:h-[340px]" role="img" aria-label={`${data.title}, ${data.periods[period]?.label}`}>
       {rects.map((r) => {
         const g = data.groups.find((x) => x.id === r.group)!;
         const w = r.w - G, h = r.h - G, share = ((r.v / total) * 100).toFixed(2).replace(/\.?0+$/, "") + "%";
